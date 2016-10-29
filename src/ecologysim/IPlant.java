@@ -1,6 +1,8 @@
 package ecologysim;
 
 public interface IPlant {
-	int[] getProduceMass();
+	double[] getProduceMass();
 	int getMultiplier();
+	
+	void grow(Season season);
 }

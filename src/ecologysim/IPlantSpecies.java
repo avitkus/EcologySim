@@ -3,8 +3,8 @@ package ecologysim;
 public interface IPlantSpecies extends ISpecies {
 	String getName();
 	
-	double[] growthRate(double rainfall, double temp, Season season);
+	double[] getGrowthRate(Season season);
 	
-	int[] getMaxProduce(Season season);
+	double[] getMaxProduce(Season season);
 	String[] getProduce(Season season);
 }
