@@ -2,6 +2,7 @@ package ecologysim;
 
 public interface IAnimal {
 	int getAge();
+	int age();
 	int getStarvation();
 	boolean isFemale();
 	boolean isPregnant();

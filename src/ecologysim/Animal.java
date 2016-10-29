@@ -20,6 +20,12 @@ public class Animal implements IAnimal{
 	public int getAge() {
 		return age;
 	}
+	
+	@Override
+	public int age() {
+		age++;
+		return age;
+	}
 
 	@Override
 	public int getStarvation() {
