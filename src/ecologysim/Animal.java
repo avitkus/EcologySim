@@ -6,6 +6,7 @@ public class Animal implements IAnimal{
 	private boolean isFemale;
 	private boolean isPregnant;
 	private int lastPregnancy;
+	private int numberOfPregnancies;
 	
 	public Animal(int age, boolean isFemale) {
 		this.age = age;
@@ -39,6 +40,7 @@ public class Animal implements IAnimal{
 
 	@Override
 	public boolean isPregnant() {
+		numberOfPregnancies++;
 		return isPregnant;
 	}
 
@@ -56,6 +58,15 @@ public class Animal implements IAnimal{
 	public void setLastPregnancy(int lastPregnancy) {
 		this.lastPregnancy = lastPregnancy;
 	}
-
+	
+	@Override
+	public int getNumberOfPregnancies() {
+		return numberOfPregnancies;
+	}
+	
+	@Override
+	public void setNumberOfPregnancies(int number) {
+		numberOfPregnancies = number;
+	}
 
 }

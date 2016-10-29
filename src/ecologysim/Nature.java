@@ -1,6 +1,7 @@
 package ecologysim;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class Nature implements INature{
@@ -33,6 +34,7 @@ public class Nature implements INature{
 	public void reproduce() {
 		Set<IAnimalSpecies> speciesSet = animals.getMap().keySet();
 		IAnimalSpecies[] speciesList = speciesSet.toArray(new IAnimalSpecies[speciesSet.size()]);
+		Random rand = new Random();
 		for (int i = 0; i < speciesList.length; i++) {
 			List<IAnimal> females = animals.getAllFemales(speciesList[i]);
 			
@@ -40,25 +42,37 @@ public class Nature implements INature{
 			if (week%52 >= season[0] && week%52 <= season[1]) {
 				for (int j = 0; j < females.size(); j++) {
 					if (!females.get(j).isPregnant()) {
-						//fix pregnancy rate
-						if (Math.random() > 0.5 && 
+						if (Math.random() > speciesList[i].getPregnancyChance() && 
 								females.get(j).getAge() < speciesList[i].getOldAge() &&
-								females.get(j).getAge() >= speciesList[i].getAdultAge()) {//make counts
+								females.get(j).getAge() >= speciesList[i].getAdultAge() && 
+								(speciesList[i].getMaxPregnancies() == 0 || speciesList[i].getMaxPregnancies() 
+								< females.get(j).getNumberOfPregnancies())) {
 							females.get(j).setIsPregnant(true);
 							females.get(j).setLastPregnancy(week);
 						} else if (females.get(j).isPregnant() && 
 								females.get(j).getLastPregnancy()+speciesList[i].getGestationPeriod() == week) {
 							//Fix Probabilities
-							animals.addAnimal(speciesList[i], 2, 0, 0, 0);
+							int num = rand.nextInt(speciesList[i].getOffspringCountRange()[1]);
+							if (num < speciesList[i].getOffspringCountRange()[0]) {
+								num = speciesList[i].getOffspringCountRange()[0];
+							}
+							num = (int) Math.floor(num*speciesList[i].getInfantSurvivateRate());
+							animals.addAnimal(speciesList[i], num, 0, 0, 0);
 						}
 					}
 				}
 			} else {
 				for (int j = 0; j < females.size(); j++) {
+					females.get(j).setNumberOfPregnancies(0);
 					if (females.get(j).isPregnant() && 
 							females.get(j).getLastPregnancy()+speciesList[i].getGestationPeriod() == week) {
 						//Fix Probabilities
-						animals.addAnimal(speciesList[i], 2, 0, 0, 0);
+						int num = rand.nextInt(speciesList[i].getOffspringCountRange()[1]);
+						if (num < speciesList[i].getOffspringCountRange()[0]) {
+							num = speciesList[i].getOffspringCountRange()[0];
+						}
+						num = (int) Math.floor(num*speciesList[i].getInfantSurvivateRate());
+						animals.addAnimal(speciesList[i], num, 0, 0, 0);
 					}
 				}
 			}
