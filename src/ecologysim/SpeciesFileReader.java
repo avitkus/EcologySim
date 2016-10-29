@@ -16,32 +16,28 @@ public class SpeciesFileReader {
 				//name, gestPeriod, maxPreg, minChild, maxChild, minChild, maxProp, minProb,
 				//matingStart, matingEnd, infantSurvivalRate, youth, adult, old, max,
 				//infantWeight, audltWeight, youthFood, adultFood, oldFood, sources
-				int gestationPeriod = Integer.parseInt(parts[1].trim());
-				int maxPreg = Integer.parseInt(parts[2].trim());
-				int minOffspringCount = Integer.parseInt(parts[3].trim());
-				int maxOffspringCount = Integer.parseInt(parts[4].trim());
-				double minOffspringProb = Double.parseDouble(parts[5].trim());
-				double maxOffspringProb = Double.parseDouble(parts[6].trim());
-				int matingStart = Integer.parseInt(parts[7].trim());
-				int matingEnd = Integer.parseInt(parts[8].trim());
-				double infantSurvivalRate = Double.parseDouble(parts[9].trim());
-				int youngAge = Integer.parseInt(parts[10].trim());
-				int adultAge = Integer.parseInt(parts[11].trim());
-				int oldAge = Integer.parseInt(parts[12].trim());
-				int maxAge = Integer.parseInt(parts[13].trim());
-				double infantWeight = Double.parseDouble(parts[14].trim());
-				double adultWeight = Double.parseDouble(parts[15].trim());
-				double youngFood = Double.parseDouble(parts[16].trim());
-				double adultFood = Double.parseDouble(parts[17].trim());
-				double oldFood = Double.parseDouble(parts[18].trim());
-				String[] foodSources = new String[parts.length - 18];
+				AnimalType type = AnimalType.parseString(parts[1].trim());
+				double pregChance = Double.parseDouble(parts[2].trim());
+				int gestationPeriod = Integer.parseInt(parts[3].trim());
+				int maxPreg = Integer.parseInt(parts[4].trim());
+				int[] offspringCountRange = {Integer.parseInt(parts[5].trim()), Integer.parseInt(parts[6].trim())};
+				double[] offspringProbs = {Double.parseDouble(parts[7].trim()), Double.parseDouble(parts[8].trim())};
+				int[] matingSeason = {Integer.parseInt(parts[9].trim()), Integer.parseInt(parts[10].trim())};
+				double infantSurvivalRate = Double.parseDouble(parts[11].trim());
+				int youngAge = Integer.parseInt(parts[12].trim());
+				int adultAge = Integer.parseInt(parts[13].trim());
+				int oldAge = Integer.parseInt(parts[14].trim());
+				int maxAge = Integer.parseInt(parts[15].trim());
+				double[] mass = {Double.parseDouble(parts[16].trim()), Double.parseDouble(parts[17].trim())};
+				double[] food = {Double.parseDouble(parts[18].trim()), Double.parseDouble(parts[19].trim()), Double.parseDouble(parts[20].trim())};
+				String[] foodSources = new String[parts.length - 20];
 				int sourceNum = 0;
-				for(int i = 19; i < parts.length; i++) {
+				for(int i = 21; i < parts.length; i++) {
 					foodSources[sourceNum] = parts[i].trim();
 				}
-//				species.add(new AnimalSpecies(name, gestationPeriod, maxPreg, minOffspringCount, maxOffspringCount,
-//						minOffspringProb, maxOffspringProb, matingStart, matingEnd, infantSurvivalRate,
-//						youngAge, adultAge, oldAge, maxAge, infantWeight, adultWeight, ));
+				species.add(new AnimalSpecies(name, type, pregChance, gestationPeriod, maxPreg, offspringCountRange,
+						offspringProbs, matingSeason, infantSurvivalRate,
+						youngAge, adultAge, oldAge, maxAge, mass, food, foodSources));
 			});
 		} catch (IOException e) {
 		}

@@ -2,7 +2,7 @@ package ecologysim;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 public interface IAnimalDB {
 	void addAnimal(IAnimalSpecies species, int infant, int youth, int adult, int old);
@@ -10,5 +10,5 @@ public interface IAnimalDB {
 	IAnimal popRandom(IAnimalSpecies species);
 	IAnimal[] getUniqueRandom(IAnimalSpecies species, int count);
 	List<IAnimal> getAllFemales(IAnimalSpecies species);
-	HashMap<IAnimalSpecies, ArrayList<IAnimal>> getMap();
+	Map<IAnimalSpecies, ArrayList<IAnimal>> getMap();
 }

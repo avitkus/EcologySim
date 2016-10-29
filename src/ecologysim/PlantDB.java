@@ -1,6 +1,7 @@
 package ecologysim;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class PlantDB implements IPlantDB {
 	private HashMap<IPlantSpecies, ArrayList<IPlant>> map;
@@ -10,7 +11,6 @@ public class PlantDB implements IPlantDB {
 		if(!map.containsKey(species)) {
 			map.put(species, new ArrayList<>());
 		}
-		
 		map.get(species).add(new Plant(species, produceMasses, multiplier));
 	}
 
@@ -23,6 +23,11 @@ public class PlantDB implements IPlantDB {
 		for(int i = 0; i < count; i ++) {
 			curSpecies.add(new Plant(species, produceMasses, multiplier));
 		}
+	}
+
+	@Override
+	public Map<IPlantSpecies, ArrayList<IPlant>> getMap() {
+		return map;
 	}
 
 }

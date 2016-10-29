@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -95,7 +96,7 @@ private HashMap<IAnimalSpecies, ArrayList<IAnimal>> map;
 		return femaleList;
 	}
 	
-	public HashMap<IAnimalSpecies, ArrayList<IAnimal>> getMap() {
+	public Map<IAnimalSpecies, ArrayList<IAnimal>> getMap() {
 		return map;
 	}
 }

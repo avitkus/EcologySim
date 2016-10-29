@@ -16,10 +16,8 @@ public class Nature implements INature{
 
 	@Override
 	public void age() {
-		animals.getMap().entrySet()
-			.forEach(entry -> entry.getValue().removeIf(animal -> animal.age() > entry.getKey().getMaxAge()));
-		
-		
+		animals.getMap().forEach((species, animals) -> animals.removeIf(animal -> animal.age() > species.getMaxAge()));
+		plants.getMap().forEach((species, plants) -> plants.forEach(plant -> plant.grow(getSeason())));
 	}
 
 	@Override
