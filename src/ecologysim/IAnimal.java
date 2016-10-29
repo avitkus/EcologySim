@@ -5,6 +5,7 @@ public interface IAnimal {
 	int getStarvation();
 	boolean isFemale();
 	boolean isPregnant();
+	void setIsPregnant(boolean isPregnant);
 	int getLastPregnancy();
-	int setLastPregnancy();
+	void setLastPregnancy(int lastPreganancy);
 }

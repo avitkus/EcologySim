@@ -4,12 +4,12 @@ public interface IAnimalSpecies extends ISpecies {
 	String getName();
 	AnimalType getAnimalType();
 	
-	int getPregnancyChance();
+	double getPregnancyChance();
 	int getGestationPeriod();
 	int getMaxPregnancies();
 	
 	int[] getOffspringCountRange();
-	int[] getOffspringCountWeights();
+	double[] getOffspringCountLiklihood();
 	int[] getMatingSeason();
 	double getInfantSurvivateRate();
 	
@@ -18,9 +18,9 @@ public interface IAnimalSpecies extends ISpecies {
 	int getOldAge();
 	int getMaxAge();
 	
-	int getEdibleMass(int age);
+	double getEdibleMass(int age);
 	
-	int getFoodRequired(int age, Season season);
+	double getFoodRequired(int age, Season season);
 	
 	String[] getFoodSources();
 }
