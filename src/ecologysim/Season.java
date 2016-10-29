@@ -15,4 +15,17 @@ public enum Season {
 				return 3;
 		}
 	}
+	
+	static public Season fromInt(int i) {
+		switch(i) {
+			case 0:
+				return SPRING;
+			case 1:
+				return SUMMER;
+			case 2:
+				return FALL;
+			default:
+				return WINTER;
+		}
+	}
 }

@@ -1,18 +1,26 @@
 package ecologysim;
 
+import java.util.Arrays;
+
 public class PlantSpecies implements IPlantSpecies {
 
 	private String name;
-	private String[][] produces;
+	private String[] produces;
 	private double[][] growthRates;
 	private double[][] maxProduce;	
 	
-	public PlantSpecies(String name, String[][] produces, double[][] growthRates, double[][] maxProduce) {
+	public PlantSpecies(String name, String[] produces, double[][] growthRates, double[][] maxProduce) {
 		super();
 		this.name = name;
-		this.produces = produces;
-		this.growthRates = growthRates;
-		this.maxProduce = maxProduce;
+		this.produces = Arrays.copyOf(produces, produces.length);
+		this.growthRates = new double[growthRates.length][growthRates[0].length];
+		for(int i = 0; i < growthRates.length; i ++) {
+			this.growthRates[i] = Arrays.copyOf(growthRates[i], growthRates[0].length);
+		}
+		this.maxProduce = new double[maxProduce.length][maxProduce[0].length];
+		for(int i = 0; i < maxProduce.length; i ++) {
+			this.maxProduce[i] = Arrays.copyOf(maxProduce[i], maxProduce[0].length);
+		}
 	}
 
 	@Override
@@ -36,8 +44,8 @@ public class PlantSpecies implements IPlantSpecies {
 	}
 
 	@Override
-	public String[] getProduce(Season season) {
-		return produces[Season.toInt(season)];
+	public String[] getProduces() {
+		return produces;
 	}
 
 }

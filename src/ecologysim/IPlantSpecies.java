@@ -6,5 +6,5 @@ public interface IPlantSpecies extends ISpecies {
 	double[] getGrowthRate(Season season);
 	
 	double[] getMaxProduce(Season season);
-	String[] getProduce(Season season);
+	String[] getProduces();
 }
